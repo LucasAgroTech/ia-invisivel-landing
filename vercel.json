@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/.vercel/output",
+  "buildCommand": "cd frontend && npm install && npm run build.client",
+  "outputDirectory": "frontend/dist",
   "framework": null,
   "functions": {
     "api/leads.py": {
@@ -16,20 +16,8 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/(q-data/.*)",
-      "destination": "/$1"
-    },
-    {
-      "source": "/(build/.*)",
-      "destination": "/$1"
-    },
-    {
-      "source": "/(assets/.*)",
-      "destination": "/$1"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -48,15 +36,6 @@
         {
           "key": "cache-control", 
           "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/q-data/(.*)",
-      "headers": [
-        {
-          "key": "cache-control",
-          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }

@@ -8,10 +8,28 @@ export default extendConfig(baseConfig, () => {
       ssr: true,
       rollupOptions: {
         input: ["src/entry.vercel-edge.tsx", "@qwik-city-plan"],
+        external: [
+          // Externalize heavy dependencies to reduce bundle size
+          "node:*",
+          /^@vercel\//,
+          /^@types\//,
+          /^@rollup\//,
+          /^@babel\//,
+          /^@typescript-eslint\//,
+        ],
       },
       outDir: ".vercel/output/functions/_qwik-city.func",
-      minify: true,
+      minify: "terser",
+      target: "esnext",
+      sourcemap: false,
     },
     plugins: [vercelEdgeAdapter()],
+    ssr: {
+      target: "webworker",
+      noExternal: [
+        "@builder.io/qwik",
+        "@builder.io/qwik-city",
+      ],
+    },
   };
 });

@@ -1,36 +1,46 @@
-# Dependencies (CRITICAL: Exclude node_modules but keep package files)
+# CRITICAL: Exclude ALL node_modules to prevent 250MB function size
 **/node_modules/**
 **/.pnp
 .pnp.js
 
-# Testing
-**/coverage
-
-# Build directories (but keep .vercel/output)
-**/dist
-**/build
-**/.next
-**/.nuxt
-**/.output
-**/.vercel
+# All build artifacts except our specific output
+**/dist/**
+**/build/**
+**/.next/**
+**/.nuxt/**
+**/.output/**
+**/.vercel/**
 !frontend/.vercel/output
 
-# Cache
-**/.cache
-**/.mf
-**/.rollup.cache
+# All cache and temporary files
+**/.cache/**
+**/.mf/**
+**/.rollup.cache/**
 **/tsconfig.tsbuildinfo
+**/tmp/**
+**/temp/**
 
-# Logs
+# All logs
 **/npm-debug.log*
 **/yarn-debug.log*
 **/yarn-error.log*
 **/pnpm-debug.log*
 
-# Editor directories and files
+# Development and testing
+**/coverage/**
+**/.env
+**/.env.*
+!**/.env.example
+
+# Heavy development files that could inflate function
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Editor and OS
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/**
 .DS_Store
 *.suo
 *.ntvs*
@@ -38,43 +48,26 @@
 *.sln
 *.sw?
 
-# Local env files
-**/.env
-**/.env.*
-!**/.env.example
-
-# Temporary files
-**/tmp
-**/temp
-
-# Arquivos antigos que não são necessários para o deploy
-backend/
-deploy/
-server/
-tmp/
-
-# Documentação (manter apenas arquivos essenciais)
+# Documentation and non-essential files
+README.md
 INSTALL.md
 SETUP_RESUMO.md
 HEROKU_DEPLOY.md
 DEPLOY_INSTRUCTIONS.md
+VERCEL_SETUP.md
 
-# Scripts antigos
+# Development scripts
 start.py
 start_improved.py
 start.sh
 run.py
 deploy_qwik.sh
-
-# Arquivos de desenvolvimento
 .env.example
 docker-compose.yml
 Dockerfile
 
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db 
+# Legacy directories
+backend/
+deploy/
+server/
+tmp/ 

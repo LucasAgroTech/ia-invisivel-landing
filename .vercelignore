@@ -1,0 +1,38 @@
+# Arquivos antigos que não são necessários para o deploy
+backend/
+deploy/
+server/
+tmp/
+
+# Documentação
+*.md
+INSTALL.md
+SETUP_RESUMO.md
+HEROKU_DEPLOY.md
+DEPLOY_INSTRUCTIONS.md
+
+# Scripts antigos
+start.py
+start_improved.py
+start.sh
+run.py
+deploy_qwik.sh
+
+# Arquivos de desenvolvimento
+.env.example
+docker-compose.yml
+Dockerfile
+
+# Cache e builds locais
+node_modules/
+.next/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db 

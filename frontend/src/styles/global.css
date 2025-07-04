@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  background: black;
+  color: white;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Animações customizadas */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* Efeitos de glow */
+.glow-effect {
+  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3));
+  transition: filter 0.3s ease;
+}
+
+.glow-effect:hover {
+  filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.5));
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #06b6d4, #10b981);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #0891b2, #059669);
+}
+
+/* Seleção de texto */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+/* Transições suaves para elementos interativos */
+button, input, select, textarea {
+  transition: all 0.3s ease;
+}
+
+/* Foco personalizado */
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+/* Utilitários customizados */
+.text-gradient {
+  background: linear-gradient(45deg, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(45deg, #06b6d4, #10b981) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .glow-effect {
+    filter: none; /* Remove glow em mobile para performance */
+  }
+}

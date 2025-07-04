@@ -1,0 +1,26 @@
+{
+  "name": "ia-invisivel-landing",
+  "version": "1.0.0",
+  "description": "IA Invisível Landing Page - Qwik SSR Application for Vercel",
+  "main": "frontend/dist/index.html",
+  "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev",
+    "start": "cd frontend && npm run preview",
+    "postinstall": "cd frontend && npm install",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seu-usuario/ia-invisivel-landing.git"
+  },
+  "keywords": ["qwik", "vercel", "landing-page", "ai"],
+  "author": "Seu Nome",
+  "license": "MIT"
+} 

@@ -1,0 +1,2 @@
+# Não há dependências externas necessárias para as funções básicas
+# As funções usam apenas bibliotecas padrão do Python 

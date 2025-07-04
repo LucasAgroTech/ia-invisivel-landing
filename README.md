@@ -8,7 +8,7 @@ O projeto está configurado para deploy automático no Vercel com as seguintes f
 
 ### 🏗️ Arquitetura
 - **Frontend**: Qwik com SSR usando Vercel Edge Functions
-- **APIs**: Python serverless functions (`@vercel/python`)
+- **APIs**: Python serverless functions (`@vercel/python@4.3.0`)
 - **Build**: Automatizado com Vercel Build API v3
 
 ### 📁 Estrutura de Deploy
@@ -31,6 +31,7 @@ api/
 - **Output Directory**: `frontend/.vercel/output`
 - **Framework**: `null` (usando Build API v3)
 - **Node.js**: `20.x`
+- **Python Runtime**: `@vercel/python@4.3.0`
 
 ### 🔄 Como Funciona
 1. **Vercel detecta** mudanças no repositório
@@ -64,6 +65,10 @@ npm run deploy
 #### ❌ Erro 404 NOT_FOUND
 **Causa**: Falta de integração Vercel Edge
 **Solução**: ✅ Adicionado `vercel-edge` adapter
+
+#### ❌ "Function Runtimes must have a valid version"
+**Causa**: Runtime Python sem versão específica
+**Solução**: ✅ Especificado `@vercel/python@4.3.0`
 
 #### ❌ Build Command não encontra dependências
 **Causa**: Configuração incorreta do diretório

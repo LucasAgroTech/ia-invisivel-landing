@@ -1,4 +1,4 @@
-# Dependencies
+# Dependencies (CRITICAL: Exclude node_modules but keep package files)
 **/node_modules/**
 **/.pnp
 .pnp.js
@@ -6,7 +6,7 @@
 # Testing
 **/coverage
 
-# Build directories
+# Build directories (but keep .vercel/output)
 **/dist
 **/build
 **/.next
@@ -46,18 +46,6 @@
 # Temporary files
 **/tmp
 **/temp
-
-# Frontend source (não incluir na função)
-frontend/src/**
-frontend/public/**
-frontend/vite.config.ts
-frontend/tailwind.config.js
-frontend/postcss.config.cjs
-frontend/eslint.config.mjs
-frontend/qwik.env.d.ts
-frontend/tsconfig.json
-frontend/package.json
-frontend/package-lock.json
 
 # Arquivos antigos que não são necessários para o deploy
 backend/

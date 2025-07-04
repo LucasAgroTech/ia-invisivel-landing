@@ -74,6 +74,27 @@ No Vercel, configure as seguintes variáveis:
 
 - `ADMIN_KEY` - Chave para acessar lista de leads
 
+## 🔧 Troubleshooting
+
+### Erro de Runtime Python
+Se você receber o erro: `Function Runtimes must have a valid version`
+
+**Solução**: O `vercel.json` deve usar `@vercel/python` como runtime:
+```json
+{
+  "functions": {
+    "api/leads.py": {
+      "runtime": "@vercel/python"
+    }
+  }
+}
+```
+
+### Build Errors
+- Certifique-se que o diretório `frontend/` contém o projeto Qwik
+- Verifique se `frontend/package.json` existe
+- Confirme que `frontend/vite.config.ts` está configurado
+
 ## 🏃‍♂️ Como Usar
 
 1. **Clone o repositório**

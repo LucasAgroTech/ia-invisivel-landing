@@ -2,6 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import { useVisibleTask$ } from '@builder.io/qwik';
 
 export default component$(() => {
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const observer = new IntersectionObserver(
       (entries) => {

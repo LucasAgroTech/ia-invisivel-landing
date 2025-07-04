@@ -1,4 +1,4 @@
-import { component$, Slot } from '@builder.io/qwik';
+import { component$, Slot, PropFunction } from '@builder.io/qwik';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary';
@@ -6,7 +6,7 @@ interface ButtonProps {
   class?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  onClick$?: () => void;
+  onClick$?: PropFunction<() => void>;
 }
 
 export default component$<ButtonProps>(({ 

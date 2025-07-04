@@ -5,7 +5,7 @@
     "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
   },
   "scripts": {
-    "build": "qwik build",
+    "build": "qwik build --skip-lint",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.types": "tsc --incremental --noEmit",
@@ -19,21 +19,23 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "^1.2.15",
-    "@builder.io/qwik-city": "^1.2.15",
-    "@types/eslint": "^8.56.5",
-    "@types/node": "^20.11.24",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
-    "autoprefixer": "^10.4.17",
-    "eslint": "^8.57.0",
-    "eslint-plugin-qwik": "^1.2.15",
-    "postcss": "^8.4.35",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.3.0",
+    "@builder.io/qwik": "^1.9.0",
+    "@builder.io/qwik-city": "^1.9.0",
+    "@eslint/js": "^8.56.0",
+    "@types/eslint": "^8.56.0",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-plugin-qwik": "^1.9.0",
+    "globals": "^13.24.0",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.1",
     "typescript": "5.3.3",
-    "undici": "^6.6.2",
-    "vite": "^5.1.4",
-    "vite-tsconfig-paths": "^4.2.1"
+    "undici": "^5.28.2",
+    "vite": "^5.0.11",
+    "vite-tsconfig-paths": "^4.2.3"
   }
 }

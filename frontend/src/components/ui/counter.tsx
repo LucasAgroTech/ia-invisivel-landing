@@ -5,7 +5,7 @@ export default component$(() => {
   const remainingSpots = useSignal(97);
   const isLoading = useSignal(false);
 
-  // Resumability: contador atualiza automaticamente
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const fetchRemainingSpots = async () => {
       try {

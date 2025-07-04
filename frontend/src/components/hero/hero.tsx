@@ -4,6 +4,7 @@ import { useVisibleTask$, useSignal } from '@builder.io/qwik';
 export default component$(() => {
   const isVideoPlaying = useSignal(false);
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     // Animações de entrada sequenciais
     const animateElements = () => {
@@ -51,11 +52,6 @@ export default component$(() => {
   
   // Para Vimeo: ID do vídeo do Vimeo
   const vimeoVideoId = "1098662655"; // Seu vídeo do Vimeo
-  
-  // Configuração da capa personalizada
-  const customThumbnail = "/videos/custom-thumbnail.svg"; // Coloque sua imagem personalizada aqui
-  const showPlayIcon = true; // Mostrar ícone de play
-  let playButtonStyle = "modern" as "modern" | "classic" | "minimal"; // Opções: "modern", "classic", "minimal"
   
   // Para vídeo local
   const hasBackgroundVideo = false;

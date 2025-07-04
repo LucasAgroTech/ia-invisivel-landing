@@ -5,22 +5,21 @@
   "main": "frontend/dist/index.html",
   "type": "module",
   "engines": {
-    "node": "20.x"
+    "node": "18.x"
   },
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
     "dev": "cd frontend && npm run dev",
     "start": "cd frontend && npm run preview",
-    "postinstall": "cd frontend && npm install",
-    "vercel-build": "cd frontend && npm install && npm run build"
+    "postinstall": "cd frontend && npm install"
   },
   "dependencies": {},
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seu-usuario/ia-invisivel-landing.git"
+    "url": "git+https://github.com/LucasAgroTech/ia-invisivel-landing.git"
   },
   "keywords": ["qwik", "vercel", "landing-page", "ai"],
-  "author": "Seu Nome",
+  "author": "Lucas AgroTech",
   "license": "MIT"
 } 

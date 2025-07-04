@@ -14,12 +14,15 @@ export default defineConfig(() => {
     build: {
       outDir: 'dist',
       rollupOptions: {
-        input: ['src/entry.ssr.tsx'],
+        input: ['src/entry.ssr.tsx', '@qwik-city-plan'],
       },
     },
     ssr: {
-      target: 'node' as const,
+      target: 'webworker' as const,
       noExternal: ['@builder.io/qwik', '@builder.io/qwik-city'],
+    },
+    optimizeDeps: {
+      include: ['@builder.io/qwik/server', '@builder.io/qwik-city/middleware/vercel-edge'],
     },
   };
 });

@@ -1,2 +1,3 @@
-# Não há dependências externas necessárias para as funções básicas
-# As funções usam apenas bibliotecas padrão do Python 
+# Dependências Python para Vercel Serverless Functions
+# As funções usam apenas bibliotecas padrão do Python 3.9+
+# Não são necessárias dependências externas para este projeto 

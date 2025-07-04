@@ -13,7 +13,7 @@ Landing page exclusiva para AiHacker construída com Qwik e otimizada para deplo
    - O Vercel detectará automaticamente as configurações
 
 2. **Configuração automática:**
-   - O arquivo `vercel.json` já está configurado
+   - O arquivo `vercel.json` já está configurado com funções Python
    - O build será executado automaticamente
    - As APIs Python serão convertidas em Serverless Functions
 
@@ -61,6 +61,8 @@ npm run dev
 - ✅ **Sistema de Exclusividade** - Contador de vagas
 - ✅ **CORS configurado** - APIs acessíveis
 - ✅ **Cache otimizado** - Assets com cache longo
+- ✅ **ESLint 9** - Configuração moderna
+- ✅ **TypeScript** - Tipagem completa
 
 ## 🔗 Endpoints da API
 
@@ -77,23 +79,45 @@ No Vercel, configure as seguintes variáveis:
 ## 🔧 Troubleshooting
 
 ### Erro de Runtime Python
-Se você receber o erro: `Function Runtimes must have a valid version`
-
-**Solução**: O `vercel.json` deve usar `@vercel/python` como runtime:
+✅ **Resolvido**: O `vercel.json` agora inclui explicitamente:
 ```json
 {
   "functions": {
     "api/leads.py": {
       "runtime": "@vercel/python"
+    },
+    "api/remaining-spots.py": {
+      "runtime": "@vercel/python"  
     }
   }
 }
 ```
 
 ### Build Errors
-- Certifique-se que o diretório `frontend/` contém o projeto Qwik
-- Verifique se `frontend/package.json` existe
-- Confirme que `frontend/vite.config.ts` está configurado
+✅ **Resolvido**: 
+- Node.js configurado para versão 18.x (compatibilidade otimizada)
+- Dependências atualizadas para versões mais recentes
+- ESLint configurado para versão 9+
+
+### Warnings de Pacotes Deprecados  
+✅ **Resolvido**: Todas as dependências foram atualizadas para suas versões mais recentes.
+
+## 🚀 Melhorias Implementadas
+
+### 1. **Vercel.json Otimizado**
+- Configuração explícita das funções Python
+- Framework Qwik detectado automaticamente
+- Cache headers otimizados
+
+### 2. **Dependências Atualizadas**
+- Qwik 1.9.0+ (performance melhorada)
+- ESLint 9+ (configuração moderna)
+- TypeScript 5.6+ (recursos mais recentes)
+
+### 3. **Build Otimizado**
+- Node.js 18.x para máxima compatibilidade
+- Build command especializado para Qwik
+- Output directory configurado corretamente
 
 ## 🏃‍♂️ Como Usar
 
@@ -107,12 +131,12 @@ O Vercel cuidará de todo o processo de build e deploy automaticamente.
 ## 🔧 Tecnologias
 
 ### Frontend
-- **Qwik** - Framework ultra-rápido com resumability
+- **Qwik 1.9+** - Framework ultra-rápido com resumability
 - **Tailwind CSS** - Framework CSS utilitário
-- **TypeScript** - Linguagem principal
+- **TypeScript 5.6+** - Linguagem principal
 
 ### Backend
-- **Python** - Serverless Functions
+- **Python 3.9+** - Serverless Functions
 - **Vercel** - Plataforma de deploy
 
 ---

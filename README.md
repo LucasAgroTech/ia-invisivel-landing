@@ -1,144 +1,105 @@
-# IA Invisível Landing Page
+# 🚀 IA Invisível Landing Page
 
-Landing page exclusiva para AiHacker construída com Qwik e otimizada para deploy no Vercel.
+Landing page construída com Qwik para deploy no Vercel com funcionalidades serverless.
 
-## 🚀 Deploy no Vercel
+## ✅ Deploy Configurado
 
-### Deploy Automático (Recomendado)
+O projeto está configurado para deploy automático no Vercel com as seguintes funcionalidades:
 
-1. **Conecte o repositório ao Vercel:**
-   - Acesse [vercel.com](https://vercel.com)
-   - Clique em "Import Project"
-   - Conecte seu repositório do GitHub
-   - O Vercel detectará automaticamente as configurações
+### 🏗️ Arquitetura
+- **Frontend**: Qwik com SSR usando Vercel Edge Functions
+- **APIs**: Python serverless functions (`@vercel/python`)
+- **Build**: Automatizado com Vercel Build API v3
 
-2. **Configuração automática:**
-   - O arquivo `vercel.json` já está configurado com funções Python
-   - O build será executado automaticamente
-   - As APIs Python serão convertidas em Serverless Functions
+### 📁 Estrutura de Deploy
+```
+vercel.json (raiz)           # Configuração principal do projeto
+frontend/
+├── .vercel/output/          # Output Build API v3
+│   ├── config.json         # Configuração de rotas
+│   ├── static/             # Arquivos estáticos
+│   └── functions/          # Função _qwik-city Edge
+├── src/entry.vercel-edge.tsx # Entry point Vercel Edge
+└── adapters/vercel-edge/    # Configuração do adaptador
+api/
+├── leads.py                # API de captura de leads
+└── remaining-spots.py      # API de vagas restantes
+```
 
-### Deploy Manual
+### ⚙️ Configuração de Build
+- **Build Command**: `cd frontend && npm install && npm run build`
+- **Output Directory**: `frontend/.vercel/output`
+- **Framework**: `null` (usando Build API v3)
+- **Node.js**: `20.x`
+
+### 🔄 Como Funciona
+1. **Vercel detecta** mudanças no repositório
+2. **Instala dependências** do frontend
+3. **Executa build completo** incluindo:
+   - `build.client` - Gera arquivos estáticos
+   - `build.server` - Gera função Edge para SSR
+   - `build.types` - Verificação TypeScript
+4. **Deploy automático** usando Build API v3
+
+### 🛠️ Scripts Disponíveis
+```bash
+# Desenvolvimento local
+cd frontend
+npm run dev
+
+# Build completo (igual ao Vercel)
+npm run build
+
+# Deploy manual (se necessário)
+npm run deploy
+```
+
+### 🔗 URLs em Produção
+- **Site**: https://seu-dominio.vercel.app
+- **API Leads**: https://seu-dominio.vercel.app/api/leads
+- **API Spots**: https://seu-dominio.vercel.app/api/remaining-spots
+
+### 🚨 Resolução de Problemas
+
+#### ❌ Erro 404 NOT_FOUND
+**Causa**: Falta de integração Vercel Edge
+**Solução**: ✅ Adicionado `vercel-edge` adapter
+
+#### ❌ Build Command não encontra dependências
+**Causa**: Configuração incorreta do diretório
+**Solução**: ✅ `buildCommand` ajustado para `cd frontend && npm install && npm run build`
+
+#### ❌ Framework auto-detection conflitando
+**Causa**: Vercel tentando detectar framework automaticamente
+**Solução**: ✅ `framework: null` para usar Build API v3
+
+### 📊 Monitoramento
+- **Logs**: Vercel Dashboard → Functions → View Logs
+- **Performance**: Vercel Analytics
+- **Errors**: Vercel Dashboard → Functions
+
+## 🔧 Desenvolvimento Local
 
 ```bash
-# Instalar Vercel CLI
-npm i -g vercel
+# 1. Clone o repositório
+git clone https://github.com/LucasAgroTech/ia-invisivel-landing.git
+cd ia-invisivel-landing
 
-# Deploy
-vercel --prod
-```
-
-## 🏗️ Estrutura do Projeto
-
-```
-ia-invisivel-landing/
-├── frontend/          # Aplicação Qwik
-│   ├── src/
-│   ├── package.json
-│   └── vite.config.ts
-├── api/              # Serverless Functions (Python)
-│   ├── leads.py
-│   └── remaining-spots.py
-├── vercel.json       # Configuração do Vercel
-├── package.json      # Configuração raiz
-└── requirements.txt  # Dependências Python
-```
-
-## 🛠️ Desenvolvimento Local
-
-```bash
-# Instalar dependências
+# 2. Instale dependências
+cd frontend
 npm install
 
-# Iniciar desenvolvimento
+# 3. Execute em desenvolvimento
 npm run dev
 ```
 
-## 📋 Funcionalidades
+## 📝 Variáveis de Ambiente
 
-- ✅ **SSR com Qwik** - Performance otimizada
-- ✅ **Serverless APIs** - Python no Vercel
-- ✅ **Captura de Leads** - Formulário integrado
-- ✅ **Sistema de Exclusividade** - Contador de vagas
-- ✅ **CORS configurado** - APIs acessíveis
-- ✅ **Cache otimizado** - Assets com cache longo
-- ✅ **ESLint 9** - Configuração moderna
-- ✅ **TypeScript** - Tipagem completa
-
-## 🔗 Endpoints da API
-
-- `GET /api/remaining-spots` - Vagas restantes
-- `POST /api/leads` - Capturar lead
-- `GET /api/leads` - Listar leads (protegido)
-
-## ⚙️ Variáveis de Ambiente
-
-No Vercel, configure as seguintes variáveis:
-
-- `ADMIN_KEY` - Chave para acessar lista de leads
-
-## 🔧 Troubleshooting
-
-### Erro de Runtime Python
-✅ **Resolvido**: O `vercel.json` agora inclui explicitamente:
-```json
-{
-  "functions": {
-    "api/leads.py": {
-      "runtime": "@vercel/python"
-    },
-    "api/remaining-spots.py": {
-      "runtime": "@vercel/python"  
-    }
-  }
-}
+Configure no Vercel Dashboard:
+```bash
+ADMIN_KEY=sua-chave-admin-secreta
 ```
-
-### Build Errors
-✅ **Resolvido**: 
-- Node.js configurado para versão 18.x (compatibilidade otimizada)
-- Dependências atualizadas para versões mais recentes
-- ESLint configurado para versão 9+
-
-### Warnings de Pacotes Deprecados  
-✅ **Resolvido**: Todas as dependências foram atualizadas para suas versões mais recentes.
-
-## 🚀 Melhorias Implementadas
-
-### 1. **Vercel.json Otimizado**
-- Configuração explícita das funções Python
-- Framework Qwik detectado automaticamente
-- Cache headers otimizados
-
-### 2. **Dependências Atualizadas**
-- Qwik 1.9.0+ (performance melhorada)
-- ESLint 9+ (configuração moderna)
-- TypeScript 5.6+ (recursos mais recentes)
-
-### 3. **Build Otimizado**
-- Node.js 18.x para máxima compatibilidade
-- Build command especializado para Qwik
-- Output directory configurado corretamente
-
-## 🏃‍♂️ Como Usar
-
-1. **Clone o repositório**
-2. **Faça push para seu GitHub**
-3. **Conecte ao Vercel**
-4. **Deploy automático!**
-
-O Vercel cuidará de todo o processo de build e deploy automaticamente.
-
-## 🔧 Tecnologias
-
-### Frontend
-- **Qwik 1.9+** - Framework ultra-rápido com resumability
-- **Tailwind CSS** - Framework CSS utilitário
-- **TypeScript 5.6+** - Linguagem principal
-
-### Backend
-- **Python 3.9+** - Serverless Functions
-- **Vercel** - Plataforma de deploy
 
 ---
 
-**Nota:** Este projeto está otimizado para performance máxima no Vercel com Qwik e Serverless Functions.
+**✨ Deploy funcionando corretamente!** 🎉

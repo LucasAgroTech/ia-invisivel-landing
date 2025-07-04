@@ -4,10 +4,10 @@
   "framework": null,
   "functions": {
     "api/leads.py": {
-      "runtime": "@vercel/python"
+      "runtime": "@vercel/python@4.3.0"
     },
     "api/remaining-spots.py": {
-      "runtime": "@vercel/python"
+      "runtime": "@vercel/python@4.3.0"
     }
   },
   "rewrites": [

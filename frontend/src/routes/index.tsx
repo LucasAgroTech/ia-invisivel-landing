@@ -33,3 +33,10 @@ export const head: DocumentHead = {
     },
   ],
 };
+
+// Adicionar configuração de prerender para gerar index.html estático
+export const onStaticGenerate = () => {
+  return {
+    params: [{}], // Gerar página estática para a rota /
+  };
+};

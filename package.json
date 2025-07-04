@@ -5,7 +5,7 @@
   "main": "frontend/dist/index.html",
   "type": "module",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "build": "cd frontend && npm install && npm run build",

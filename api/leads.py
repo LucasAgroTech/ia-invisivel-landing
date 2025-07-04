@@ -2,13 +2,19 @@ from http.server import BaseHTTPRequestHandler
 import json
 import os
 from datetime import datetime
-import urllib.parse
 
 # Simulação de banco de dados em memória (em produção use um banco real)
 leads_db = []
 remaining_spots = 97
 
-class handler(BaseHTTPRequestHandler):
+class Handler(BaseHTTPRequestHandler):
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Key')
+        self.end_headers()
+
     def do_POST(self):
         global remaining_spots, leads_db
         
@@ -53,6 +59,8 @@ class handler(BaseHTTPRequestHandler):
             self.send_error_response(500, "Erro interno")
     
     def do_GET(self):
+        global leads_db
+        
         # Endpoint protegido - apenas para admin
         auth_key = self.headers.get('X-Admin-Key')
         if auth_key != os.environ.get('ADMIN_KEY', 'admin123'):
@@ -65,13 +73,6 @@ class handler(BaseHTTPRequestHandler):
         }
         
         self.send_json_response(200, response)
-    
-    def do_OPTIONS(self):
-        self.send_response(200)
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Key')
-        self.end_headers()
     
     def send_json_response(self, status_code, data):
         self.send_response(status_code)

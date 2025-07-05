@@ -6,15 +6,20 @@
 - **Antes**: `npm run build.client` (inexistente)
 - **Agora**: `npm run build` (comando correto)
 
-### 2. **Configurações Unificadas**
+### 2. **Output Directory Corrigido** 🔥
+- **Problema**: `No Output Directory named "dist" found`
+- **Causa**: Qwik + Vercel Edge usa `.vercel/output/` em vez de `dist/`
+- **Solução**: Removido `outputDirectory` do vercel.json (auto-detectado)
+
+### 3. **Configurações Unificadas**
 - **Removido**: `frontend/vercel.json` duplicado
 - **Mantido**: `vercel.json` na raiz (único necessário)
 
-### 3. **Dependências Corrigidas**
+### 4. **Dependências Corrigidas**
 - **Adicionado**: `terser` (necessário para build de produção)
 - **Movido**: `@builder.io/qwik` para dependencies
 
-### 4. **Node.js Otimizado**
+### 5. **Node.js Otimizado**
 - **Antes**: `^18.17.0 || ^20.3.0 || >=21.0.0` (complexo)
 - **Agora**: `>=18.17.0` (simples e compatível)
 
@@ -24,7 +29,6 @@
 ```json
 {
   "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/dist",
   "installCommand": "cd frontend && npm install",
   "framework": null,
   "functions": {
@@ -38,17 +42,17 @@
 }
 ```
 
-### Estrutura de Build
+### Estrutura de Build (Qwik + Vercel Edge)
 ```
 frontend/
-├── dist/                 # Output do build
-│   ├── index.html
-│   ├── assets/
-│   └── build/
 ├── .vercel/
-│   └── output/
-│       └── functions/
-│           └── _qwik-city.func/
+│   └── output/                 # Auto-generated pelo adaptador
+│       ├── functions/
+│       │   └── _qwik-city.func/
+│       └── static/             # Arquivos estáticos (HTML, CSS, JS)
+│           ├── assets/
+│           ├── build/
+│           └── manifest files
 ```
 
 ## 🚀 Como Fazer o Deploy
@@ -80,14 +84,14 @@ npm run preview
 
 ## 🔍 Troubleshooting
 
+### Erro "No Output Directory named 'dist' found"
+✅ **Já resolvido** - Removido `outputDirectory` do vercel.json
+
 ### Erro "terser not found"
-```bash
-cd frontend
-npm install --save-dev terser
-```
+✅ **Já resolvido** - Terser instalado como dependência
 
 ### Erro "build.client not found"
-✅ **Já resolvido** - usando `npm run build` agora
+✅ **Já resolvido** - Usando `npm run build` agora
 
 ### Erro "Cannot resolve module"
 ```bash
@@ -97,7 +101,7 @@ npm run build.types
 ```
 
 ### Erro de CORS nas APIs
-✅ **Já configurado** - headers CORS nas funções Python
+✅ **Já configurado** - Headers CORS nas funções Python
 
 ## 📊 Monitoramento
 
@@ -136,6 +140,7 @@ VERCEL_ENV=production
 ## 📝 Checklist de Deploy
 
 - [x] Build command corrigido
+- [x] **Output Directory corrigido** 🔥
 - [x] Dependências instaladas
 - [x] Configurações unificadas
 - [x] Node.js otimizado
@@ -144,6 +149,18 @@ VERCEL_ENV=production
 - [x] Cache headers otimizados
 - [x] .vercelignore otimizado
 
+## 🧠 Entendendo o Qwik + Vercel Edge
+
+### Por que não usar `dist/`?
+- **Qwik SSR**: Usa adaptador específico para Vercel Edge
+- **Build Output API v3**: Vercel procura em `.vercel/output/`
+- **Arquivos estáticos**: Ficam em `.vercel/output/static/`
+- **Funções serverless**: Ficam em `.vercel/output/functions/`
+
+### Diferença para projetos SPA tradicionais
+- **SPA**: Build → `dist/` → Vercel serve arquivos estáticos
+- **Qwik SSR**: Build → `.vercel/output/` → Vercel serve híbrido (estático + serverless)
+
 ---
 
-✨ **Tudo pronto para deploy!** Os problemas anteriores foram resolvidos. 
+✨ **Tudo pronto para deploy!** O erro do Output Directory foi corrigido. 

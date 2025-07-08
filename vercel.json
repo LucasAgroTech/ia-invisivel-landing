@@ -1,7 +1,5 @@
 {
-  "version": 3,
   "buildCommand": "cd frontend && npm ci && npm run build",
-  "outputDirectory": "frontend/.vercel/output",
   "installCommand": "cd frontend && npm ci",
   "framework": null,
   "functions": {
@@ -11,6 +9,5 @@
     "api/remaining-spots.py": {
       "runtime": "@vercel/python@4.3.0"
     }
-  },
-  "crons": []
+  }
 } 

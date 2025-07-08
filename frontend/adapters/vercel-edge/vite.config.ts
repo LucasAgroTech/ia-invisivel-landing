@@ -9,27 +9,45 @@ export default extendConfig(baseConfig, () => {
       rollupOptions: {
         input: ["src/entry.vercel-edge.tsx", "@qwik-city-plan"],
         external: [
-          // Externalize heavy dependencies to reduce bundle size
+          // Externalize para reduzir tamanho do bundle
           "node:*",
           /^@vercel\//,
           /^@types\//,
           /^@rollup\//,
           /^@babel\//,
           /^@typescript-eslint\//,
+          /^eslint/,
+          /^prettier/,
+          /^autoprefixer/,
+          /^postcss/,
+          /^tailwindcss/,
+          /^undici/,
+          /^vite/,
         ],
       },
+      // ✅ CRÍTICO: Build API v3 output directory
       outDir: ".vercel/output/functions/_qwik-city.func",
       minify: "terser",
       target: "esnext",
       sourcemap: false,
+      chunkSizeWarningLimit: 1000,
     },
-    plugins: [vercelEdgeAdapter()],
+    plugins: [
+      vercelEdgeAdapter({
+        // ✅ Configuração específica para Edge
+        staticPaths: ["/", "/manifest.json", "/robots.txt", "/favicon.svg"]
+      })
+    ],
     ssr: {
       target: "webworker",
       noExternal: [
         "@builder.io/qwik",
         "@builder.io/qwik-city",
       ],
+    },
+    define: {
+      // ✅ Optimizations para Edge Runtime
+      'process.env.NODE_ENV': JSON.stringify('production'),
     },
   };
 });

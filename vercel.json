@@ -1,6 +1,8 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "installCommand": "cd frontend && npm install",
+  "version": 3,
+  "buildCommand": "cd frontend && npm ci && npm run build",
+  "outputDirectory": "frontend/.vercel/output",
+  "installCommand": "cd frontend && npm ci",
   "framework": null,
   "functions": {
     "api/leads.py": {
@@ -10,10 +12,5 @@
       "runtime": "@vercel/python@4.3.0"
     }
   },
-  "rewrites": [
-    {
-      "source": "/((?!api).*)",
-      "destination": "/index.html"
-    }
-  ]
+  "crons": []
 } 

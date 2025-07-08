@@ -1,9 +1,9 @@
-# CRITICAL: Exclude ALL node_modules to prevent 250MB function size
+# ✅ CRÍTICO: Exclude ALL node_modules para evitar 250MB limit
 **/node_modules/**
 **/.pnp
 .pnp.js
 
-# All build artifacts except our specific output
+# ✅ Build artifacts - MANTER apenas output específico
 **/dist/**
 **/build/**
 **/.next/**
@@ -12,7 +12,7 @@
 **/.vercel/**
 !frontend/.vercel/output
 
-# All cache and temporary files
+# ✅ Cache files
 **/.cache/**
 **/.mf/**
 **/.rollup.cache/**
@@ -20,24 +20,24 @@
 **/tmp/**
 **/temp/**
 
-# All logs
+# ✅ Logs
 **/npm-debug.log*
 **/yarn-debug.log*
 **/yarn-error.log*
 **/pnpm-debug.log*
 
-# Development and testing
+# ✅ Environment files
 **/coverage/**
 **/.env
 **/.env.*
 !**/.env.example
 
-# Heavy development files that could inflate function
+# ✅ Lock files pesados
 **/package-lock.json
 **/yarn.lock
 **/pnpm-lock.yaml
 
-# Editor and OS
+# ✅ Editor files
 .vscode/*
 !.vscode/extensions.json
 .idea/**
@@ -48,7 +48,7 @@
 *.sln
 *.sw?
 
-# Documentation and non-essential files
+# ✅ Documentação
 README.md
 INSTALL.md
 SETUP_RESUMO.md
@@ -56,7 +56,7 @@ HEROKU_DEPLOY.md
 DEPLOY_INSTRUCTIONS.md
 VERCEL_SETUP.md
 
-# Development scripts
+# ✅ Scripts de desenvolvimento
 start.py
 start_improved.py
 start.sh
@@ -66,61 +66,13 @@ deploy_qwik.sh
 docker-compose.yml
 Dockerfile
 
-# Legacy directories
+# ✅ Directories desnecessárias
 backend/
 deploy/
 server/
 tmp/
+legacy/
 
-# Node modules
-node_modules/
-frontend/node_modules/
-
-# Build artifacts
-frontend/dist/
-frontend/lib/
-frontend/server/
-
-# Development files
-frontend/tmp/
-frontend/.cache/
-frontend/.vite/
-
-# TypeScript
-frontend/tsconfig.tsbuildinfo
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Git
+# ✅ Git
 .git/
-.gitignore
-
-# Documentation
-README.md
-VERCEL_SETUP.md 
+.gitignore 

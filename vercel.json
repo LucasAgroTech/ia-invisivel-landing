@@ -1,6 +1,7 @@
 {
   "buildCommand": "cd frontend && npm install && npm run build",
   "installCommand": "cd frontend && npm install",
+  "framework": null,
   "functions": {
     "api/leads.py": {
       "runtime": "@vercel/python@4.3.0"

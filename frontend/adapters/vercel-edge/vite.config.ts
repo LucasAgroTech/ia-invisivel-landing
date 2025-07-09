@@ -9,8 +9,9 @@ export default extendConfig(baseConfig, () => {
       rollupOptions: {
         input: ["src/entry.vercel-edge.tsx", "@qwik-city-plan"],
         external: [
-          // Externalize para reduzir tamanho do bundle
+          // ✅ CRÍTICO: Externalize TUDO para reduzir bundle
           "node:*",
+          /^node:/,
           /^@vercel\//,
           /^@types\//,
           /^@rollup\//,
@@ -23,6 +24,20 @@ export default extendConfig(baseConfig, () => {
           /^tailwindcss/,
           /^undici/,
           /^vite/,
+          /^typescript/,
+          /^terser/,
+          /^@eslint\//,
+          /^globals/,
+          // ✅ Adicionar mais externals críticos
+          "vite-tsconfig-paths",
+          "tsc",
+          "fsevents",
+          "chokidar",
+          "@esbuild",
+          "rollup",
+          "acorn",
+          "@swc/core",
+          "lightningcss"
         ],
       },
       // ✅ CRÍTICO: Build API v3 output directory
@@ -41,6 +56,7 @@ export default extendConfig(baseConfig, () => {
     ssr: {
       target: "webworker",
       noExternal: [
+        // ✅ APENAS o essencial do Qwik
         "@builder.io/qwik",
         "@builder.io/qwik-city",
       ],

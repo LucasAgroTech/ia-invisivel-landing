@@ -72,6 +72,27 @@ server/
 tmp/
 legacy/
 
+# ✅ CRÍTICO: Files que inflam função serverless
+**/*.md
+**/*.txt
+!robots.txt
+!manifest.json
+**/LICENSE*
+**/CHANGELOG*
+**/CONTRIBUTING*
+**/.eslintrc*
+**/.prettierrc*
+**/jest.config*
+**/vitest.config*
+**/cypress.config*
+**/playwright.config*
+
+# ✅ Source maps e debug files
+**/*.map
+**/*.test.*
+**/*.spec.*
+**/*.stories.*
+
 # ✅ Git
 .git/
 .gitignore 

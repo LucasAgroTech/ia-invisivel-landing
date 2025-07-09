@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "@builder.io/qwik": "^1.9.0",
-    "@builder.io/qwik-city": "^1.9.0",
-    "terser": "^5.43.1"
+    "@builder.io/qwik-city": "^1.9.0"
   }
 }

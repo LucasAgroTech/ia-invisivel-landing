@@ -7,14 +7,12 @@ export default defineConfig(() => {
   return {
     plugins: [
       qwikCity({
-        // ✅ Configuração para geração estática
         trailingSlash: false,
       }), 
       qwikVite({
-        // ✅ Configuração para site estático
         client: {
-          outDir: 'dist'
-        }
+          outDir: 'dist',
+        },
       }), 
       tsconfigPaths()
     ],
@@ -26,25 +24,33 @@ export default defineConfig(() => {
     build: {
       outDir: 'dist',
       rollupOptions: {
-        input: ['src/entry.ssr.tsx', '@qwik-city-plan'],
         output: {
-          // ✅ Otimização para arquivos estáticos
-          manualChunks: undefined,
+          // ✅ Otimização para reduzir tamanho
+          manualChunks: (id) => {
+            if (id.includes('@builder.io/qwik')) {
+              return 'qwik-core';
+            }
+            if (id.includes('@builder.io/qwik-city')) {
+              return 'qwik-city';
+            }
+            return undefined;
+          },
         }
       },
-      // ✅ Otimizações para arquivos estáticos
-      minify: 'terser' as const,
-      target: 'esnext',
+      // ✅ Otimizações agressivas para reduzir tamanho
+      minify: true,
+      target: 'es2020',
+      chunkSizeWarningLimit: 1000,
+      assetsInlineLimit: 4096,
     },
-    // ✅ Removido ssr para gerar site estático
     optimizeDeps: {
       include: [
-        '@builder.io/qwik/server'
+        '@builder.io/qwik',
+        '@builder.io/qwik-city',
       ],
     },
     define: {
-      // ✅ Site estático
-      'import.meta.env.SSR': 'false'
+      'import.meta.env.SSR': 'false',
     }
   };
 });

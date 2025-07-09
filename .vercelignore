@@ -1,44 +1,52 @@
-# ✅ CRÍTICO: Exclude ALL node_modules para evitar 250MB limit
+# ✅ CRÍTICO: Exclude ALL node_modules to avoid 250MB limit
 **/node_modules/**
 **/.pnp
 .pnp.js
 
-# ✅ Build artifacts - MANTER apenas output específico
+# ✅ CRÍTICO: Exclude ALL development files
+**/src/**
+!frontend/dist/**
+**/tmp/**
+**/temp/**
+**/.vercel/**
+**/.cache/**
+**/.rollup.cache/**
+**/tsconfig.tsbuildinfo
+
+# ✅ CRÍTICO: Exclude ALL build artifacts except final output
 **/dist/**
+!frontend/dist/**
 **/build/**
 **/.next/**
 **/.nuxt/**
 **/.output/**
-**/.vercel/**
-!frontend/.vercel/output
 
-# ✅ Cache files
-**/.cache/**
-**/.mf/**
-**/.rollup.cache/**
-**/tsconfig.tsbuildinfo
-**/tmp/**
-**/temp/**
+# ✅ CRÍTICO: Exclude ALL config files
+**/vite.config.*
+**/tailwind.config.*
+**/postcss.config.*
+**/tsconfig.json
+**/eslint.config.*
+**/.prettierrc*
+**/.eslintrc*
+**/jest.config*
+**/vitest.config*
 
-# ✅ Logs
+# ✅ CRÍTICO: Logs and debug files
 **/npm-debug.log*
 **/yarn-debug.log*
 **/yarn-error.log*
 **/pnpm-debug.log*
-
-# ✅ Environment files
 **/coverage/**
-**/.env
-**/.env.*
-!**/.env.example
 
-# ✅ Lock files pesados (removido package-lock.json para permitir npm ci)
+# ✅ CRÍTICO: Environment and lock files
+**/.env*
+!**/.env.example
 **/yarn.lock
 **/pnpm-lock.yaml
 
-# ✅ Editor files
-.vscode/*
-!.vscode/extensions.json
+# ✅ CRÍTICO: Editor and OS files
+.vscode/**
 .idea/**
 .DS_Store
 *.suo
@@ -47,52 +55,31 @@
 *.sln
 *.sw?
 
-# ✅ Documentação
-README.md
-INSTALL.md
-SETUP_RESUMO.md
-HEROKU_DEPLOY.md
-DEPLOY_INSTRUCTIONS.md
-VERCEL_SETUP.md
-
-# ✅ Scripts de desenvolvimento
-start.py
-start_improved.py
-start.sh
-run.py
-deploy_qwik.sh
-.env.example
-docker-compose.yml
-Dockerfile
-
-# ✅ Directories desnecessárias
-backend/
-deploy/
-server/
-tmp/
-legacy/
-
-# ✅ CRÍTICO: Files que inflam função serverless
+# ✅ CRÍTICO: Documentation files
 **/*.md
-**/*.txt
 !robots.txt
 !manifest.json
 **/LICENSE*
 **/CHANGELOG*
 **/CONTRIBUTING*
-**/.eslintrc*
-**/.prettierrc*
-**/jest.config*
-**/vitest.config*
-**/cypress.config*
-**/playwright.config*
 
-# ✅ Source maps e debug files
-**/*.map
+# ✅ CRÍTICO: Test and story files
 **/*.test.*
 **/*.spec.*
 **/*.stories.*
+**/*.map
 
-# ✅ Git
+# ✅ CRÍTICO: Unnecessary directories
+backend/
+deploy/
+server/
+legacy/
+frontend/src/
+frontend/node_modules/
+frontend/.vercel/
+frontend/tmp/
+
+# ✅ CRÍTICO: Git files
 .git/
-.gitignore 
+.gitignore
+.gitattributes 

@@ -5,10 +5,10 @@
     "node": ">=18.17.0"
   },
   "scripts": {
-    "build": "qwik build --skip-lint",
-    "build.client": "vite build",
+    "build": "qwik build --target=client --skip-lint",
+    "build.client": "vite build --mode=production",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
-    "build.server": "echo 'Static build - no server needed'",
+    "build.server": "echo 'Static SPA - no server needed'",
     "build.types": "tsc --incremental --noEmit",
     "deploy": "vercel deploy",
     "dev": "vite --mode ssr",

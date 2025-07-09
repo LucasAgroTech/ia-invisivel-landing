@@ -7,11 +7,11 @@ export default defineConfig(() => {
   return {
     plugins: [
       qwikCity({
-        // ✅ Configuração para Build API v3
+        // ✅ Configuração para geração estática
         trailingSlash: false,
       }), 
       qwikVite({
-        // ✅ Optimizations para produção
+        // ✅ Configuração para site estático
         client: {
           outDir: 'dist'
         }
@@ -28,26 +28,22 @@ export default defineConfig(() => {
       rollupOptions: {
         input: ['src/entry.ssr.tsx', '@qwik-city-plan'],
         output: {
-          // ✅ Otimização para Edge Functions
+          // ✅ Otimização para arquivos estáticos
           manualChunks: undefined,
         }
       },
-      // ✅ Otimizações para Vercel Edge
+      // ✅ Otimizações para arquivos estáticos
       minify: 'terser' as const,
       target: 'esnext',
     },
-    ssr: {
-      target: 'webworker' as const,
-      noExternal: ['@builder.io/qwik', '@builder.io/qwik-city'],
-    },
+    // ✅ Removido ssr para gerar site estático
     optimizeDeps: {
       include: [
-        '@builder.io/qwik/server', 
-        '@builder.io/qwik-city/middleware/vercel-edge'
+        '@builder.io/qwik/server'
       ],
     },
     define: {
-      // ✅ Environment variables
+      // ✅ Site estático
       'import.meta.env.SSR': 'false'
     }
   };

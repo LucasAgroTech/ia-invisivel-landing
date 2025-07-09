@@ -32,8 +32,7 @@
 **/.env.*
 !**/.env.example
 
-# ✅ Lock files pesados
-**/package-lock.json
+# ✅ Lock files pesados (removido package-lock.json para permitir npm ci)
 **/yarn.lock
 **/pnpm-lock.yaml
 
